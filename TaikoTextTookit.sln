@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaikoTextForm", "TaikoTextForm\TaikoTextForm.csproj", "{554E80D8-5CAD-4607-B330-F042C5E37B39}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taiko3DS3", "Taiko3DS3\Taiko3DS3.csproj", "{38948E61-38DE-42E7-935C-3A604235EF51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexViewer", "HexViewer\HexViewer.csproj", "{D1D3F1C1-63A2-44A3-847C-799BB4377B12}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taiko3DS3.Test", "Taiko3DS3.Test\Taiko3DS3.Test.csproj", "{08AAB68E-AD76-47B1-BBD4-0411E939264C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaikoSysTextConver", "TaikoSysTextConver\TaikoSysTextConver.csproj", "{AD754E5D-F314-4E97-BED4-05568AA97943}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaikoStoryTextConver", "TaikoStoryTextConver\TaikoStoryTextConver.csproj", "{52E4836A-31B5-44CC-BBAE-4AB25A625032}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaikoTextEditor", "TaikoTextEditor\TaikoTextEditor.csproj", "{2FB1778E-F58B-4BE9-B901-001CD7C57704}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +19,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{554E80D8-5CAD-4607-B330-F042C5E37B39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{554E80D8-5CAD-4607-B330-F042C5E37B39}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{554E80D8-5CAD-4607-B330-F042C5E37B39}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{554E80D8-5CAD-4607-B330-F042C5E37B39}.Release|Any CPU.Build.0 = Release|Any CPU
 		{38948E61-38DE-42E7-935C-3A604235EF51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{38948E61-38DE-42E7-935C-3A604235EF51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38948E61-38DE-42E7-935C-3A604235EF51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38948E61-38DE-42E7-935C-3A604235EF51}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D1D3F1C1-63A2-44A3-847C-799BB4377B12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D1D3F1C1-63A2-44A3-847C-799BB4377B12}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D1D3F1C1-63A2-44A3-847C-799BB4377B12}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D1D3F1C1-63A2-44A3-847C-799BB4377B12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08AAB68E-AD76-47B1-BBD4-0411E939264C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08AAB68E-AD76-47B1-BBD4-0411E939264C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08AAB68E-AD76-47B1-BBD4-0411E939264C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08AAB68E-AD76-47B1-BBD4-0411E939264C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD754E5D-F314-4E97-BED4-05568AA97943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD754E5D-F314-4E97-BED4-05568AA97943}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD754E5D-F314-4E97-BED4-05568AA97943}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD754E5D-F314-4E97-BED4-05568AA97943}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52E4836A-31B5-44CC-BBAE-4AB25A625032}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52E4836A-31B5-44CC-BBAE-4AB25A625032}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52E4836A-31B5-44CC-BBAE-4AB25A625032}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52E4836A-31B5-44CC-BBAE-4AB25A625032}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FB1778E-F58B-4BE9-B901-001CD7C57704}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FB1778E-F58B-4BE9-B901-001CD7C57704}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FB1778E-F58B-4BE9-B901-001CD7C57704}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FB1778E-F58B-4BE9-B901-001CD7C57704}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

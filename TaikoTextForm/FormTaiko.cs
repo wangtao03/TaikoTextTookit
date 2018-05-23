@@ -5,7 +5,6 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using Taiko3DS3;
-using static Taiko3DS3.SystemText;
 
 namespace TaikoTextOutput
 {
@@ -42,6 +41,7 @@ namespace TaikoTextOutput
                 bytes = File.ReadAllBytes(filename);
                 taiko = new SystemText(bytes);
                 hexViewer = new HexView(bytes);
+                selectIndex = -1;
                 ListViewUpdata();
                 HexViewUpdata();
             }
@@ -98,7 +98,8 @@ namespace TaikoTextOutput
             }
             catch (Exception)
             {
-                throw;
+                return;
+                //throw;
             }
         }
 
