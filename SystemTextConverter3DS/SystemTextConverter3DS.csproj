@@ -4,15 +4,24 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <ApplicationIcon>3ds.ico</ApplicationIcon>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\Build\Debug\3DS</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\Build\Release\3DS</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EPPlus" Version="5.5.0" />
+    <PackageReference Include="EPPlus" Version="5.5.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ConsoleProgressBar\ConsoleProgressBar.csproj" />
     <ProjectReference Include="..\TaikoData\TaikoData.csproj" />
   </ItemGroup>
-
 </Project>

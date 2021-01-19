@@ -50,7 +50,7 @@ namespace CharaNameConverter3DS
                     dataList.Add(new Data()
                     {
                         Identifier = workSheet.Cells[i, 2].Text + "\0",
-                        Text = workSheet.Cells[i, 4].Text + "\0",
+                        Text = Utils.RehabilitateController(workSheet.Cells[i, 4].Text) + "\0",
                         //Text = workSheet.Cells[i, 3].Text + "\0",
                         Index = short.Parse(workSheet.Cells[i, 5].Text),
                         Unknow = short.Parse(workSheet.Cells[i, 6].Text)

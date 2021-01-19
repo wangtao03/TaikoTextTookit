@@ -9,6 +9,7 @@ namespace SystemDataSwitchExport
     {
         private static void Main(string[] args)
         {
+            //args = new string[] { @"E:\yuzu-windows-msvc-early-access\user\dump\0100383012646000\romfs\3DS3\SystemData\StoryText\000_NPC_SET_E_03.dat" };
             foreach (var file in args)
             {
                 if (File.Exists(file))

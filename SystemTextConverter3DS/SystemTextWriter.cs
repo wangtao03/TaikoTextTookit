@@ -55,7 +55,7 @@ namespace SystemTextConverter3DS
                     {
                         Identifier = workSheet.Cells[i, 2].Text + "\0",
                         //Text = workSheet.Cells[i, 3].Text + "\0",
-                        Text = workSheet.Cells[i, 4].Text + "\0",
+                        Text = Utils.RehabilitateController(workSheet.Cells[i, 4].Text) + "\0",
                     });
                 }
                 bar.End();

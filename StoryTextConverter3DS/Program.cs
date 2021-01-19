@@ -7,11 +7,20 @@ namespace StoryTextConverter3DS
     {
         private static void Main(string[] args)
         {
-            //args = new string[] { @"C:\Users\WangTao\Desktop\PackEnglishV12\PackHack\ExtractedRomFS\_data\system\storytext\000_NPC_SET_A.xlsx" };
+            //args = new string[] { @"E:\3DSTaiko\_data\system\storytext\SUB_001_000.xlsx" };
+
+            if (args.Length > 0 && Directory.Exists(args[0]))
+            {
+                args = Directory.GetFiles(args[0], "*.dat");
+            }
+            var count = 0;
             foreach (var file in args)
             {
                 if (File.Exists(file))
                 {
+                    Console.Clear();
+                    Console.Write($"{++count}/{args.Length}: ");
+
                     switch (Path.GetExtension(file).ToLower())
                     {
                         case ".dat":

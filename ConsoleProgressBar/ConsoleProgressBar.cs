@@ -44,12 +44,19 @@ namespace ToolKits
             {
                 var l = Console.CursorLeft;
                 var t = Console.CursorTop;
+                if (t == cursorTop) t++;
                 Console.SetCursorPosition(0, cursorTop);
                 Console.Write($"\0[{new string('*', percent)}{new string('\0', width - percent)}]\0");
                 text ??= $"{value:##}%\0";
                 Console.WriteLine(text);
-
-                Console.SetCursorPosition(l, t);
+                try
+                {
+                    Console.SetCursorPosition(l, t);
+                }
+                catch (Exception)
+                {
+                    return;
+                }
             }
         }
 

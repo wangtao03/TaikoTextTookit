@@ -54,8 +54,8 @@ namespace StoryTextConverter3DS
                     dataList.Add(new Data()
                     {
                         Identifier = workSheet.Cells[i, 2].Text + "\0",
-                        Text = workSheet.Cells[i, 3].Text + "\0",
-                        //Text = workSheet.Cells[i, 4].Text + "\0",
+                        //Text = workSheet.Cells[i, 3].Text + "\0",
+                        Text = Utils.RehabilitateController(workSheet.Cells[i, 4].Text) + "\0",
                         Speaker = workSheet.Cells[i, 5].Text + "\0"
                     });
                 }

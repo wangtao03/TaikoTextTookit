@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace TaikoData
 {
@@ -22,6 +24,22 @@ namespace TaikoData
         }
 
         /// <summary>
+        /// 将16进制字符转为文本
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static string Hex2Str(string text)
+        {
+            var sb = new StringBuilder();
+            for (int i = 0; i < text.Length; i += 2)
+            {
+                var hex = text.Substring(i, 2);
+                sb.Append((char)Convert.ToByte(hex, 16));
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
         /// 替换控制字符
         /// </summary>
         /// <param name="text">需要处理的字符串</param>
@@ -34,6 +52,25 @@ namespace TaikoData
                 var sub = text.Substring(index, 3);
                 text = text.Replace(sub, $"{{{Str2Hex(sub)}}}");
                 index = text.IndexOf("\u001B");
+            }
+            return text;
+        }
+
+        /// <summary>
+        /// 还原控制字符
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static string RehabilitateController(string text)
+        {
+            Regex regex = new Regex(@"\{(1B\S{4})\}");
+            if (regex.IsMatch(text))
+            {
+                foreach (Match match in regex.Matches(text))
+                {
+                    var str = Hex2Str(match.Groups[1].Value);
+                    text = text.Replace(match.Groups[0].Value, str);
+                }
             }
             return text;
         }

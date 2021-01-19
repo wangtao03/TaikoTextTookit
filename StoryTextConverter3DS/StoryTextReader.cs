@@ -51,7 +51,7 @@ namespace StoryTextConverter3DS
             Console.WriteLine("\r\n读取文件内容!");
             var dList = new List<Data>();
 
-            var regex = new Regex(@"{1B02\d\d}");
+            var regex = new Regex(@"{1B02\S+}");
 
             datFile.Seek = 4;
             var count = datFile.GetInt32(12);

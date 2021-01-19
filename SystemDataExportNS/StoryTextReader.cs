@@ -107,10 +107,10 @@ namespace SystemDataSwitchExport
                 });
                 _ = datFile.GetInt32(8);                                      //固定是1???
 
-                dList[i].TextAddr = datFile.GetInt32(dList[i].IndexAddr);           //从索引串获得文本地址
-                dList[i].SpeakerAddr = datFile.GetInt32(dList[i].IndexAddr + 8);    //从索引串获得讲述人地址
-                dList[i].KanaCount = datFile.GetInt32(dList[i].IndexAddr + 16);     //从索引串获得假名数
-                dList[i].KanaAddr = datFile.GetInt32(dList[i].IndexAddr + 24);      //从索引串获得假名
+                dList[i].TextAddr = datFile.GetInt32((long)dList[i].IndexAddr);           //从索引串获得文本地址
+                dList[i].SpeakerAddr = datFile.GetInt32((long)dList[i].IndexAddr + 8);    //从索引串获得讲述人地址
+                dList[i].KanaCount = datFile.GetInt32((long)dList[i].IndexAddr + 16);     //从索引串获得假名数
+                dList[i].KanaAddr = datFile.GetInt32((long)dList[i].IndexAddr + 24);      //从索引串获得假名
 
                 //取得标识符
                 dList[i].Identifier = datFile.GetString(dList[i].IdentifierAddr, dList[i].IndexAddr - dList[i].IdentifierAddr);
