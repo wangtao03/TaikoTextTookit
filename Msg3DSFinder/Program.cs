@@ -14,7 +14,7 @@ namespace Msg3DSFinder
         private static void Main(string[] args)
         {
             //args = new string[] { @"E:\yuzu-windows-msvc-early-access\user\dump\0100383012646000\romfs\3DS3\SystemData\StoryText\" };
-            //args = new string[] { "R", "MsgID_3ds.xlsx", @"E:\3DSTaiko\_data\script_b\story" };
+            args = new string[] { "R", "MsgID_3ds.xlsx", @"E:\3DSTaiko\_data\script_b\story" };
 
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
@@ -32,10 +32,18 @@ namespace Msg3DSFinder
                         var xlsx = args[1];
                         var dir = args[2];
 
-                        Console.WriteLine("1、从xlsx 读取 MsgID");
-                        var keyValues2 = LoadDic4Xlsx(xlsx);
-                        Console.WriteLine("\r\n2.将 lua 中的 MsgID 替换为 文本");
-                        var result = ReplaceMsgKey2Value(keyValues2, dir);
+                        Console.WriteLine("1、从xlsx 读取 MsgID_CN");
+                        var keyValuesCN = LoadDic4Xlsx(xlsx);
+                        Console.WriteLine("\r\n2.将 lua 中的 MsgID_CN 替换为 文本");
+                        var result = ReplaceMsgKey2Value(keyValuesCN, dir);
+                        if (result <= 0)
+                        {
+                            Console.WriteLine("未能找到替换内容,尝试更改方法");
+                            Console.WriteLine("3、从xlsx 读取 MsgID_JP");
+                            var keyValuesJP = LoadDic4Xlsx(xlsx, true);
+                            Console.WriteLine("\r\n4.将 lua 中的 MsgID_CN 替换为 文本");
+                            result = ReplaceMsgKey2Value(keyValuesCN, keyValuesJP, dir);
+                        }
                         Console.WriteLine($"成功替换 {result} 个文件");
                         return;
                     }
@@ -65,6 +73,36 @@ namespace Msg3DSFinder
             Console.ReadKey();
         }
 
+        private static int ReplaceMsgKey2Value(Dictionary<string, string> keyValuesCN, Dictionary<string, string> keyValuesJP, string directory)
+        {
+            if (!Directory.Exists(directory)) return -1;
+            int count = 0;
+            var bar = new ConsoleProgressBar(50);
+            bar.Start();
+            foreach (var item in keyValuesCN)
+            {
+                var dirPaths = item.Key.Split("_");
+                if (dirPaths.Length != 6) continue;
+                var file = $@"{directory}\{dirPaths[2]}\{dirPaths[3]}\{dirPaths[4]}\{dirPaths[5]}.lua";
+                if (!File.Exists(file))
+                {
+                    file = Path.ChangeExtension(file, "bin");
+                    if (!File.Exists(file)) continue;
+                }
+                var lua = File.ReadAllText(file);
+                var jpValue = keyValuesJP[item.Key].Replace("\n", @"\n");
+                if (lua.IndexOf(jpValue) >= 0)
+                {
+                    bar.Update(++count, keyValuesCN.Count);
+                    Console.WriteLine($"{count}: {item.Key}\t{file}");
+                    lua = lua.Replace(jpValue, item.Value.Replace("\n", @"\n"));
+                    File.WriteAllText(file, lua);
+                }
+            }
+            bar.End();
+            return count;
+        }
+
         private static int ReplaceMsgKey2Value(Dictionary<string, string> keyValues, string directory)
         {
             if (!Directory.Exists(directory)) return -1;
@@ -83,7 +121,7 @@ namespace Msg3DSFinder
                 }
                 var lua = File.ReadAllText(file);
 
-                if (lua.IndexOf(item.Key) >= 0)
+                if (lua.IndexOf(item.Key) >= 0 && item.Value.Length > 0)
                 {
                     bar.Update(++count, keyValues.Count);
                     Console.WriteLine($"{count}: {item.Key}\t{file}");
@@ -95,7 +133,7 @@ namespace Msg3DSFinder
             return count;
         }
 
-        private static Dictionary<string, string> LoadDic4Xlsx(string path)
+        private static Dictionary<string, string> LoadDic4Xlsx(string path, bool fanyi = false)
         {
             var keyValues = new Dictionary<string, string>();
             var bar = new ConsoleProgressBar(50);
@@ -108,8 +146,9 @@ namespace Msg3DSFinder
                 for (int i = dimension.Start.Row; i <= dimension.End.Row; i++)
                 {
                     bar.Update(i, dimension.End.Row);
+
                     var key = worksheet.Cells[i, 2].Text;
-                    var value = worksheet.Cells[i, 3].Text;
+                    var value = fanyi ? worksheet.Cells[i, 4].Text : worksheet.Cells[i, 3].Text;
                     keyValues.TryAdd(key, value);
                 }
                 bar.End();
